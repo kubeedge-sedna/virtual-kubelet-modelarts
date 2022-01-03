@@ -2,12 +2,12 @@ package main
 
 import (
 	"github.com/virtual-kubelet/virtual-kubelet/cmd/virtual-kubelet/internal/provider"
-	"github.com/virtual-kubelet/virtual-kubelet/cmd/virtual-kubelet/internal/provider/mock"
+	"github.com/virtual-kubelet/virtual-kubelet/cmd/virtual-kubelet/internal/provider/modelarts"
 )
 
-func registerMock(s *provider.Store) {
-	s.Register("mock", func(cfg provider.InitConfig) (provider.Provider, error) { //nolint:errcheck
-		return mock.NewMockProvider(
+func registerModelarts(s *provider.Store) {
+	s.Register("modelarts", func(cfg provider.InitConfig) (provider.Provider, error) {
+		return modelarts.NewModelartsProvider(
 			cfg.ConfigPath,
 			cfg.NodeName,
 			cfg.OperatingSystem,

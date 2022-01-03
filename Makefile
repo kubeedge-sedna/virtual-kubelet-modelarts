@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 
-DOCKER_IMAGE := virtual-kubelet
+DOCKER_IMAGE ?= virtual-kubelet
 exec := $(DOCKER_IMAGE)
 github_repo := virtual-kubelet/virtual-kubelet
 binary := virtual-kubelet
@@ -132,7 +132,7 @@ setup: goimports gocovmerge goreleaser gox clean
 	mkdir -p bin
 	mkdir -p test
 
-VERSION          := $(shell git describe --tags --always --dirty="-dev")
+VERSION          ?= $(shell git describe --tags --always --dirty="-dev")
 DATE             := $(shell date -u '+%Y-%m-%d-%H:%M UTC')
 VERSION_FLAGS    := -ldflags='-X "main.buildVersion=$(VERSION)" -X "main.buildTime=$(DATE)"'
 
